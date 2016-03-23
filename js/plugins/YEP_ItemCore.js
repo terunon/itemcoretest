@@ -1000,7 +1000,7 @@ Game_Party.prototype.getIndependentItemTypeMax = function(item) {
  
 Game_Party.prototype.getIndependentItemTypeCur = function(item) {
     if (!item) return 0;
-//’Ç‰Á•ÏXF‘å–‚È•¨‚ğƒJƒEƒ“ƒg‚µ‚È‚¢
+//è¿½åŠ å¤‰æ›´ï¼šå¤§äº‹ãªç‰©ã‚’ã‚«ã‚¦ãƒ³ãƒˆã—ãªã„
     if (DataManager.isItem(item)) {
       var filtered = this.items().filter(function(item, index){
         if (item.itypeId == 1) return true;
@@ -1239,10 +1239,10 @@ Window_ItemList.prototype.drawItemNumber = function(item, dx, dy, dw) {
     Yanfly.Item.Window_ItemList_drawItemNumber.call(this, item, dx, dy, dw);
 };
 
-// ƒAƒCƒeƒ€ŒÂ””Ô–Ú‚Í‚±‚±‚Å•\¦‚³‚ê‚Ä‚¢‚é c .indexOf(item)/.max
+// ã‚¢ã‚¤ãƒ†ãƒ å€‹æ•°ç•ªç›®ã¯ã“ã“ã§è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ â€¦ .indexOf(item)/.max
 Window_ItemList.prototype.drawItemCarryNumber = function(item, dx, dy, dw) {
     if (DataManager.isItem(item)) {
-//’Ç‰Á
+//è¿½åŠ 
       var filtered = $gameParty.items().filter(function(item, index){
         if (item.itypeId == 1) return true;
       });
@@ -1326,7 +1326,6 @@ Window_ShopStatus.prototype.drawPossession = function(x, y) {
     Yanfly.Item.Window_ShopStatus_drawPossession.call(this, x, y);
 };
 
-//’Ç‰ÁF‚±‚±‚ğ‚¢‚¶‚ê‚ÎƒVƒ‡ƒbƒv‚Ì”\—Í•Ï‰»‚ğ‘‚¯‚é 
 Window_ShopStatus.prototype.drawIndependentPossession = function(x, y) {
     var width = this.contents.width - this.textPadding() - x;
     var baseItem = DataManager.getBaseItem(this._item);
@@ -1413,7 +1412,7 @@ Window_ItemCategory.prototype.itemTextAlign = function() {
 Yanfly.Item.Window_ItemList_initialize = Window_ItemList.prototype.initialize;
 Window_ItemList.prototype.initialize = function(x, y, width, height) {
     if (SceneManager._scene instanceof Scene_Item) {
-      width = Graphics.boxWidth; //’Ç‰Ác1/2‚ğíœ / 2;
+      width = Graphics.boxWidth; //è¿½åŠ â€¦1/2ã‚’å‰Šé™¤ / 2;
     }
     Yanfly.Item.Window_ItemList_initialize.call(this, x, y, width, height);
 };
@@ -1538,9 +1537,7 @@ Window_ItemStatus.prototype.drawItemIcon = function() {
     this.drawLargeIcon();
 };
 
-//’Ç‰ÁFfirefox‚Å“®ì‚µ‚È‚¢‚½‚ß—áŠOˆ—
 Window_ItemStatus.prototype.drawLargeIcon = function() {
-  if (window.navigator.userAgent.toLowerCase().indexOf('Firefox') == -1) {
     var iconIndex = this._item.iconIndex;
     var bitmap = ImageManager.loadSystem('IconSet');
     var pw = Window_Base._iconWidth;
@@ -1851,7 +1848,7 @@ Window_ItemActionCommand.prototype.initialize = function(x, y) {
 };
  
 Window_ItemActionCommand.prototype.windowWidth = function() {
-    return Graphics.boxWidth; //’Ç‰ÁF1/2‚ğíœ
+    return Graphics.boxWidth; //è¿½åŠ ï¼š1/2ã‚’å‰Šé™¤
 };
  
 Window_ItemActionCommand.prototype.setItem = function(item) {
@@ -1886,9 +1883,9 @@ Window_ItemActionCommand.prototype.addUseCommand = function() {
       text += '\\c[' + this._item.textColor + ']';
     }
     text += this._item.name;
-//’Ç‰Á
-    text += '  '
-    text += '\\c[' + 0 + ']';
+//è¿½åŠ ï¼šæ–‡å­—è‰²ã‚’å…ƒã«æˆ»ã™
+//    text += '  '
+//    text += '\\c[' + 0 + ']';
     text = fmt.format(text);
     this.addCommand(text, 'use', enabled);
 };
@@ -1915,7 +1912,7 @@ Window_ItemActionCommand.prototype.addCustomCommandsE = function() {
  
 Window_ItemActionCommand.prototype.addCustomCommandsF = function() {
     
-//’Ç‰Á
+//è¿½åŠ 
     var carrier = false;
     for (var a = 0; a < $gameParty.members().length; ++a) {
       var actor = $gameParty.members()[a];
@@ -1924,7 +1921,7 @@ Window_ItemActionCommand.prototype.addCustomCommandsF = function() {
     }
 //    var enabled = (this._item.price == 0) ? true : false;
     var enabled = (this._item.itypeId != 2 || this._item.itypeId == undefined) ? true : false;
-    text = TextManager.formation;
+    text = String('æ¨ã¦ã‚‹');
 //    this.addCommand(text, 'trash', (enabled == false && carrier == false));
     this.addCommand(text, 'trash', (enabled == true && carrier == false));
 };
@@ -1977,7 +1974,7 @@ Scene_Item.prototype.createActionWindow = function() {
     var wy = this._itemWindow.y;
     this._itemActionWindow = new Window_ItemActionCommand(0, wy);
     this._itemActionWindow.setHandler('use', this.onActionUse.bind(this));
-//’Ç‰Á
+//è¿½åŠ 
     this._itemActionWindow.setHandler('trash', this.onActionTrash.bind(this));
     this._itemActionWindow.setHandler('cancel', this.onActionCancel.bind(this));
     this.addWindow(this._itemActionWindow);
@@ -2006,7 +2003,7 @@ Scene_Item.prototype.onActionUse = function() {
     this.determineItem();
 };
  
-//’Ç‰Á
+//è¿½åŠ 
 Scene_Item.prototype.onActionTrash = function() {
     $gameParty.gainItem(this.item(), -1, false);
     this._itemActionWindow.hide();
@@ -2014,12 +2011,6 @@ Scene_Item.prototype.onActionTrash = function() {
     this._itemWindow.activate();
     this._itemWindow.refresh();
 };
-//’Ç‰Á
-Game_Party.prototype.gainObject = function(obj, amount) {
-    if (DataManager.isItem(obj)) this.gainItem(obj._id, amount);
-    if (DataManager.isWeapon(obj)) this.gainWeapon(obj._id, amount);
-    if (DataManager.isArmor(obj)) this.gainArmor(obj._id, amount);
-}
 
 
 Scene_Item.prototype.onActionCancel = function() {
